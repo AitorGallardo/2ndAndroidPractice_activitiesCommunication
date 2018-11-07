@@ -44,10 +44,12 @@ public class Main2Activity extends Activity implements View.OnClickListener {
 
     public void onAccept() {
         intent.putExtra("result","Accepted");
-        startActivity(intent);
+        setResult(RESULT_OK, intent);
+        finish();
     }
     public void onReject() {
         intent.putExtra("result","Rejected");
-        startActivity(intent);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

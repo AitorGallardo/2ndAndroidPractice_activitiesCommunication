@@ -1,6 +1,7 @@
 package com.example.aitor.activities_communication;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +13,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Intent intent;
-    Bundle Main2ActivityInfo;
 
-    String nameToSend, accpt_rejectInfo;
+
+    String nameToSend;
 
     Button checkButton;
     EditText inputName;
@@ -60,22 +61,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             toast.show();
         } else {
             intent.putExtra("name",nameToSend);
-            startActivity(intent);
+            startActivityForResult(intent,1234);
         }
 
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        int hola = 1;
-        Main2ActivityInfo = getIntent().getExtras();
-
-        if(Main2ActivityInfo != null) {
-            accpt_rejectInfo = Main2ActivityInfo.getString("result");
-            viewText+=accpt_rejectInfo;
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1234 && resultCode==RESULT_OK) {
+            String res = data.getExtras().getString("result");
+            viewText = "Result: ";
+            viewText+=res;
             resultView.setText(viewText);
         }
-     }
+    }
 }
+
