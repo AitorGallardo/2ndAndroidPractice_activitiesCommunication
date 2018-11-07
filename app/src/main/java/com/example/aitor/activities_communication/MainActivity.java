@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nameToSend = inputName.getText().toString();
 
         if(nameToSend.length() <= 0) {
+            resultView.setText("Result: ");
             Toast toast = Toast.makeText(this,"Please introduce a name", Toast.LENGTH_SHORT);
             toast.show();
         } else {
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
+        int hola = 1;
         Main2ActivityInfo = getIntent().getExtras();
 
         if(Main2ActivityInfo != null) {
